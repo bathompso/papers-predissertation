@@ -1,0 +1,52 @@
+\contentsline {section}{\numberline {1}Introduction}{4}
+\contentsline {subsection}{\numberline {1.1}Basic Astrophysics}{4}
+\contentsline {subsubsection}{\numberline {1.1.1}The Magnitude System}{4}
+\contentsline {subsubsection}{\numberline {1.1.2}Filter Systems}{5}
+\contentsline {subsubsection}{\numberline {1.1.3}Color-Magnitude Diagrams + Low-Mass Stellar Evolution}{6}
+\contentsline {subsubsection}{\numberline {1.1.4}Metallicity}{10}
+\contentsline {subsubsection}{\numberline {1.1.5}Interstellar Reddening}{10}
+\contentsline {subsection}{\numberline {1.2}Binary Star Systems}{11}
+\contentsline {subsubsection}{\numberline {1.2.1}Visual Binaries}{12}
+\contentsline {subsubsection}{\numberline {1.2.2}Eclipsing Binaries}{12}
+\contentsline {subsubsection}{\numberline {1.2.3}Spectroscopic Binaries}{14}
+\contentsline {subsection}{\numberline {1.3}Star Clusters}{15}
+\contentsline {section}{\numberline {2}Project Overview}{16}
+\contentsline {subsection}{\numberline {2.1}Instrumentation and Processing}{16}
+\contentsline {subsubsection}{\numberline {2.1.1}Visual Wavelength Detectors}{16}
+\contentsline {subsubsection}{\numberline {2.1.2}Infrared Wavelength Detectors}{17}
+\contentsline {subsubsection}{\numberline {2.1.3}Image Reduction}{17}
+\contentsline {subsubsection}{\numberline {2.1.4}Magnitude Measurements}{18}
+\contentsline {subsection}{\numberline {2.2}Cluster Sample}{20}
+\contentsline {subsection}{\numberline {2.3}Available Data}{21}
+\contentsline {subsubsection}{\numberline {2.3.1}Visual Data Sources [0.3 -- 1.0 $\mu $m]}{21}
+\contentsline {subsubsection}{\numberline {2.3.2}Near-Infrared Data Sources [1.0 -- 2.5 $\mu $m]}{23}
+\contentsline {subsubsection}{\numberline {2.3.3}Mid-Infrared Data [2.5 -- 10 $\mu $m]}{24}
+\contentsline {subsubsection}{\numberline {2.3.4}Membership Data}{25}
+\contentsline {subsubsection}{\numberline {2.3.5}Data Overview}{25}
+\contentsline {section}{\numberline {3}Testing Stellar Evolution Models}{25}
+\contentsline {subsection}{\numberline {3.1}Building a Star}{26}
+\contentsline {subsection}{\numberline {3.2}Infrared Calibration}{27}
+\contentsline {subsection}{\numberline {3.3}Isochrone Fitting}{28}
+\contentsline {subsection}{\numberline {3.4}APOGEE}{30}
+\contentsline {subsection}{\numberline {3.5}Preliminary Results}{30}
+\contentsline {subsubsection}{\numberline {3.5.1}Comparison}{30}
+\contentsline {subsubsection}{\numberline {3.5.2}Full Cluster Set}{31}
+\contentsline {subsubsection}{\numberline {3.5.3}Membership Cut}{31}
+\contentsline {subsubsection}{\numberline {3.5.4}Empirical Ridgeline}{32}
+\contentsline {subsection}{\numberline {3.6}Future Work}{35}
+\contentsline {subsubsection}{\numberline {3.6.1}Additional Systems}{35}
+\contentsline {subsubsection}{\numberline {3.6.2}Separating the Models}{36}
+\contentsline {subsubsection}{\numberline {3.6.3}Binaries}{36}
+\contentsline {section}{\numberline {4}Binary Cluster Populations and Evolution}{36}
+\contentsline {subsection}{\numberline {4.1}Effects of Binary Stars}{36}
+\contentsline {subsubsection}{\numberline {4.1.1}Effect on Stellar Evolution}{36}
+\contentsline {subsubsection}{\numberline {4.1.2}Effect on Cluster Evolution}{37}
+\contentsline {subsection}{\numberline {4.2}Current Binary Detection Techniques}{38}
+\contentsline {subsubsection}{\numberline {4.2.1}Two-Band Photometry}{38}
+\contentsline {subsubsection}{\numberline {4.2.2}Radial Velocity Studies}{38}
+\contentsline {subsection}{\numberline {4.3}Binary SED Fitting}{40}
+\contentsline {subsection}{\numberline {4.4}Code Testing}{42}
+\contentsline {subsubsection}{\numberline {4.4.1}Single Star Test}{42}
+\contentsline {subsubsection}{\numberline {4.4.2}Mass Determination Test}{42}
+\contentsline {subsubsection}{\numberline {4.4.3}Real World Test}{42}
+\contentsline {subsection}{\numberline {4.5}Future Work}{44}

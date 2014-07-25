@@ -1,0 +1,68 @@
+device postencap FluxCompare.eps
+xtcolors
+add_ctype grey 100 100 100
+data "DATA/isoc_z019.9677.flux.dat"
+read {lambda 1 F1 33 F2 67 BS 70 BS2 80}
+data "DATA/starflux.txt"
+read {binlambda 1 binflux 2 binerr 3}
+ptype 24 0
+lweight 3
+
+window 1 -2 1 1
+limits 0 8.2 0 90
+ticksize 0.5 2 5 20
+expand 0.9
+xlabel Wavelength (\mu m)
+ylabel Flux (Jy)
+box 1 2
+
+ctype black
+points (lambda/1000) (BS2)
+connect (lambda/1000) (BS2)
+
+points (lambda/1000) (BS)
+ltype 2
+connect (lambda/1000) (BS)
+ltype 0
+
+ctype red
+points (binlambda/1000) (binflux)
+error_y (binlambda/1000) (binflux) (binerr)
+
+ctype black
+relocate 6.1 85
+draw 6.5 85
+relocate 6.6 84
+label m = 1.062 M_\odot
+ltype 2
+relocate 6.1 80
+draw 6.5 80
+relocate 6.6 79
+label m = 1.024 M_\odot
+ltype 0
+
+
+
+ctype black
+window 1 -2 1 2
+limits 0 8.2 0 90
+ticksize 0.5 2 5 20
+expand 0.9
+ylabel Flux (Jy)
+box 0 2
+
+ctype black
+ptype 24 0
+points (lambda/1000) (F1+F2)
+connect (lambda/1000) (F1+F2)
+
+ctype red
+points (binlambda/1000) (binflux)
+error_y (binlambda/1000) (binflux) (binerr)
+
+ctype black
+relocate 6.5 84
+label m_P = 1.009 M_\odot
+relocate 6.5 79
+label m_S = 0.647 M_\odot
+

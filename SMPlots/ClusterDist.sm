@@ -1,0 +1,24 @@
+device postencap ClusterDist.eps
+xtcolors
+add_ctype grey 150 150 150
+lweight 3
+ptype 24 0
+
+expand 0.9
+window 1 2 1 2
+limits 7.0 10.1 -0.6 0.4
+ticksize -1 0 0.1 0.3
+ylabel Z (dex)
+xlabel Age (yr)
+box 1 2
+
+expand 1.2
+data "DATA/ClusterDist.txt"
+read {Age 3 FeH 4}
+points Age (0.9775 * FeH - 0.0769) if (FeH != 0.0)
+ptype 4 1
+points Age FeH if (FeH == 0.0)
+
+
+
+

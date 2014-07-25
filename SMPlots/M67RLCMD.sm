@@ -1,0 +1,74 @@
+device postencap M67RLCMD.eps
+xtcolors
+add_ctype grey 150 150 150
+expand 0.75
+lweight 3
+
+data "CMD/NGC2682.RidgelineISO.txt"
+read {RA 2 Dec 3 U 4 B 6 V 8 R 10 I 12 SU 14 SG 16 SR 18 SI 20 SZ 22 J 24 H 26 K 28 B1 30 B2 32 B3 34 B4 36}
+data "PADOVA/isoc_z019.trim.dat"
+read {Page 1 PU 8 PB 9 PV 10 PR 11 PI 12 PSU 13 PSG 14 PSR 15 PSI 16 PSZ 17 PJ 18 PH 19 PK 20 PB1 21 PB2 22 PB3 23 PB4 24}
+data "DARTMOUTH/isoc_z019.trim.dat"
+read {Dage 1 DU 8 DB 9 DV 10 DR 11 DI 12 DSU 13 DSG 14 DSR 15 DSI 16 DSZ 17 DJ 18 DH 19 DK 20 DB1 21 DB2 22 DB3 23 DB4 24}
+
+
+
+##### Cluster Parameters
+set ebv = 0.02
+set dist = 9.5
+set clageP = 9.6
+set clageD = 9.602
+########################
+#######################################
+window 3 2 1 2
+limits 0 2.4 21 8
+ticksize 0.1 0.5 1 2
+ylabel V
+xlabel B-V
+box 1 2
+
+ctype grey
+points (B-V) V
+
+ctype firebrick
+connect (PB-PV + ebv) (PV + dist) if (Page == clageP)
+ctype royalblue
+connect (DB-DV + ebv) (DV + dist + 0.1) if (Dage == clageD)
+
+
+
+#######################################
+ctype black
+window 3 2 2 2
+limits 0 7.2 21 8
+ticksize 0.2 1 1 2
+ylabel V
+xlabel V-K
+box 1 2
+
+ctype grey
+points (V-K) V
+
+ctype firebrick
+connect (PV-PK + ebv * 2.741) (PV + dist) if (Page == clageP)
+ctype royalblue
+connect (DV-DK + ebv * 2.741) (DV + dist + 0.1) if (Dage == clageD)
+
+
+#######################################
+ctype black
+window 3 2 3 2
+limits 0 1.5 19 6
+ticksize 0.1 0.5 1 2
+ylabel J
+xlabel J-K
+box 1 2
+
+ctype grey
+points (J-K) J
+
+ctype firebrick
+connect (PJ-PK + ebv * 0.525) (PJ + dist) if (Page == clageP)
+ctype royalblue
+connect (DJ-DK + ebv * 0.525) (DJ + dist + 0.1) if (Dage == clageD)
+

@@ -1,0 +1,221 @@
+\section{Testing Stellar Evolution Models}\label{sec:Isochrones}
+
+To understand the formation and evolution of the Milky Way and other galaxies, ages of stars must be determined. However, determining the age of a single star is nearly impossible. The Sun is dated not through direct observation, but from radioactive dating of meteorites. Instead of mapping galactic evolution through single stars, star clusters are used, where direct age determination is possible.
+
+\subsection{Building a Star}
+
+%\begin{wrapfigure}{R}{0.30\textwidth}
+%\begin{center}
+%\includegraphics[width=0.28\textwidth]{IMGs/Ridgeline.png}
+%\end{center}
+%\caption[Component Stars in Ridgeline]{Synthetic isochrone stars which make up the ridgeline. Relative sizes of dots are correlated with mass.\label{fig:ridgeline}}
+%\end{wrapfigure}
+
+To date star clusters, stellar evolution models called \emph{isochrones} are used. Isochrones are sets of synthetic stars with the same chemical composition and age, but with a range of mass, similar to the observed stars in a cluster. Isochrone stellar models are built using two components: \\
+
+\noindent \textbf{Stellar Core:} Using the mass and age of the star, stellar evolution models return two values: the star's temperature and the star's surface gravity. The temperature of the stellar core determines where the star falls horizontally on the CMD, while the surface gravity determines where the star is located vertically. Dwarf stars (stars on the main sequence) are small and compact (like the Sun), while giant stars are large and puffy. Even though a giant and dwarf may have the same temperature, the surface gravity of the dwarf will be much higher. Using Newtonian gravity ($g = GM/R^2$), the radius of the star can also be modeled. \\
+
+\noindent \textbf{Stellar Atmosphere:} On first approximation, the energy output of a star is a near-blackbody, governed by the temperature derived for the core model. In reality, the spectrum also has absorption lines from elements in the star's atmosphere. Temperature and surface gravity from the core model are combined with individual elemental abundances determined for the star and fed into atmosphere generation codes. These atmosphere codes, such as ATLAS9 \citep{2004astro.ph..5087C}, use this information to compute the strength of all atomic and molecular absorption lines. These lines are overlaid on the blackbody spectrum and the synthetic flux is output.
+
+To convert to magnitudes, the flux curve is convolved with a filter transmission function (those plotted in figure \ref{fig:FilterBlackbody}) to determine the overall amount of flux coming through the filter. Equations \eqref{eq:VegaSys} or \eqref{eq:ABSys} is then used to convert the flux to a magnitude, depending on which convention you are using. \\
+
+There are several different isochrone systems, each using different parameters and equations. Differences between systems include:
+
+\begin{enumerate}
+\item \textbf{Equation of State:} The equation of state for a star describes the interaction of gravity and photon pressure within a star. The equation of state for different isochrone systems are not always the same, leading to different estimates for the size and temperature of the star.
+\item \textbf{Mixing Length:} The mixing length governs how far a single cell can move during convection before being disrupted. During the RGB phase, a star's outer layers are convective, and the mixing length governs how far materials can move within the star. Larger mixing lengths can allow for fusion products to rise to the surface, altering the chemical composition of the stellar atmosphere.
+\item \textbf{Core Overshoot:} As Hydrogen fusion slows in the stellar core, the convective zone in the core may increase slightly. This convective zone causes Hydrogen above the core to be pulled in, providing extra fuel for fusion. This addition of fuel causes an abrupt increase in energy output as the star becomes brighter and hotter. This manifests as a blue-ward ``hook'' in the model CMD, illustrated in figure \ref{fig:OvershootHook}. The amount of convective expansion, and for what mass stars this happens, differs between systems.
+\item \textbf{Helium Fraction:} The fraction of Helium within a star is not the same between isochrone models. Both the baseline amount of Helium (for a star with no metals), as well as the Helium-to-metal ratio changes between systems.
+\end{enumerate}
+
+
+\begin{figure}[h!] \centering
+\includegraphics[width=0.28\textwidth]{IMGs/OvershootHook.png}
+
+\parbox{0.6\textwidth}{\caption[Convective Core Overshoot Ridgeline]{Upper main sequence, turn-off and lower RGB region of 2 Gyr isochrone. Core overshoot hook noticeable at beginning of turn-off.\label{fig:OvershootHook}}}
+\end{figure}
+
+The physics of stellar evolution and the inner workings of a star are still not completely understood. By comparing multiple isochrone systems to observational data, we will attempt to determine which evolution model contains the most accurate physics. \textbf{[Question 1]}
+
+
+\subsection{Infrared Calibration}\label{sec:IsoIRCal}
+Isochrone systems are most often calibrated using visual magnitudes, and have yet to be extensively tested and calibrated in the infrared. Using isochrones in the infrared is important, mainly due to the fact that light can penetrate galactic dust much better using those bands. For a star with 1 magnitude of extinction in $H$ (middle of near-IR), it has 6 magnitudes of extinction in $V$ (middle of visual), using table \ref{tab:RX}. Compensating for this 5 magnitude difference corresponds to a 10x increase in telescope size; the difference between a modest 1-m class telescope and one of the 10-m Keck telescopes, the best in the world. 
+
+Because smaller telescopes can probe further using infrared bands, many new open clusters are being discovered in the infrared only. In order to characterize these new clusters, isochrones must be trustworthy when using only near-IR filters. Currently, the best fit parameters of a particular cluster will change based on what magnitude-color combination is used. Even though the same stars are used, the derived parameters change when using $V$ vs $B-V$ or $K_S$ vs $J-K_S$, etc. Until the discrepancy between magnitude-color combinations is resolved, cluster parameters for NIR-only open clusters cannot be satisfactorily determined.
+
+\subsection{Isochrone Fitting}\label{sec:IsoFit}
+
+Stars in an isochrone set trace a line on a CMD called the \emph{fiducial ridgeline}. Determining the four cluster parameters (age, distance, metallicity, reddening) amounts to fitting the CMD of the cluster in question to the most accurate fiducial ridgeline.
+
+Age and metallicity affect the shape of the ridgeline, with age moving the turnoff point further down in magnitude while metallicity affects the slope of the RGB on the CMD. Distance simply shifts the fiducial ridgeline vertically in accordance with equation \eqref{eq:MagnitudeDistanceRel}. Gas clouds between Earth and the cluster in question contribute two effects: it shifts the ridgeline vertically an amount $A_X$ due to extinction in a particular filter $X$, as well as shifts the ridgeline horizontally an amount $E(X-Y)$ due to reddening in the $X-Y$ color.  The ratio $R_X = A_X / E(X-Y)$ is known for a number of filter systems, and so the ridgeline is shifted along a line with slope $R_X$ on the CMD. The effects of various parameters on the ridgelines is illustrated in figure \ref{IsoEffects}.
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=0.98\textwidth]{IMGs/IsoCompare.png}
+\end{center}
+\vspace{-20pt}
+\begin{center}
+\parbox{0.9\textwidth}{\caption[Parameter Effects on Fiducial Ridgelines]{Effects of parameters on ridgeline. Default ridgeline values are: Z = -0.1 dex, Age = 4 Gyr, Distance = 10 pc, Reddening = 0. For each panel, only the relevant parameter is changed while the other three are held at the default value.\label{IsoEffects}}}
+\end{center}
+\vspace{-10pt}
+\end{figure}
+
+In the past, cluster parameters were derived using hand-fit isochrones. With multiple clusters to fit, as well as hundreds of color-magnitude combinations, make hand fitting isochrones ill-advised. With the advent of powerful computers, isochrone fitting can be accomplished much faster digitally. The isochrone fitting routine (Irwin, \emph{private communication}) used in this research, called IsoFit, creates a grid of ridgelines with all possible combinations of age, distance, reddening and metallicity to compare to the observational data. The effects each parameter has on the ridgeline is described below. Ridgelines with varying parameters are shown in figure \ref{IsoEffects}. \\
+
+\begin{enumerate}
+\item \textbf{Metallicity:} Metallicity governs the strength and abundance of absorption lines present in the stellar atmosphere. As metallicity increases, so do line strengths, removing more photons from the spectrum of the star and changing both the magnitude and color of the star. Underlying physics, such as core overshoot, depends on metallicity in some models as well.
+
+\item \textbf{Age:} Age governs the location of the turn-off on the CMD. As time progresses, lower mass stars, and hence dimmer, expend their Hydrogen fuel and enter the subgiant branch. Core overshoot models are often limited for stars above a certain mass, and once those stars have evolved to the RGB, the overshoot hook no longer exists in the ridgeline.
+
+\item \textbf{Distance:} Distance alters the location of the ridgeline on the CMD according to equation \eqref{eq:MagnitudeDistanceRel}, due to the inverse-square law of light intensity. Ridgelines with larger distances will be shifted down in magnitude.
+
+\item \textbf{Reddening:} On a CMD with magnitude $X$ and color $X-Y$, reddening shifts the ridgeline along a line with slope $R_X = A_X / E(X-Y)$. $R_X$ can be computed using values in table \ref{tab:RX} for all of the CMDs used in isochrone fittings. Reddening is always positive, shifting the ridgeline to the left and down on the CMD.
+\end{enumerate}
+
+Each ridgeline is placed on the CMD and each data point compared to it. For each point, the closest distance from the point to the ridgeline, $D$, is computed. The fit value for the ridgeline is calculated using:
+
+\begin{equation}
+\text{Fit} = \sum_{\text{stars}} \left[ D_i + \sqrt{ \left( \sigma_{X} \right)_i^2 + \left( \sigma_{X-Y} \right)_i^2 } \right]
+\label{eq:IsoFit}
+\end{equation}
+
+In equation \eqref{eq:IsoFit}, $\sigma_{X}$ and $\sigma_{X-Y}$ are the photometric errors in magnitude and color, respectively. Due to observational uncertainties, the ``closest'' a point can be to the ridgeline is equal to its errors. If a ridgeline fits well, all $D_i$'s will be low, and the total Fit value will also be low. After all possible ridgelines have been compared, the one with the lowest Fit value is chosen as best. The parameters of this best-fit ridgeline are taken to be the parameters of the cluster itself. To determine the errors in parameter determination, the standard deviation of the $D_i$'s is converted into a parameter error.
+
+Observational data of clusters over many photometric bands will be run through the fitter and compared with published ages, metallicities, distances and reddening values. The isochrone systems that show consistent and accurate parameter determination will be marked as best, signifying the most realistic physical model.
+
+\subsection{APOGEE}\label{sec:APOGEE}
+Of the four cluster parameters used by IsoFit, metallicity is the hardest to determine photometrically. To simplify the fittings, we will utilize metallicity information from the APO Galactic Evolution Experiment (APOGEE). As a part of SDSS-3, APOGEE will use high-resolution ($R \sim 22500$), high signal-to-noise (100/pixel) infrared spectroscopy to determine precise radial velocities and chemical information for 100,000 red giant stars. Many of the clusters in this project will be observed by APOGEE, and we will restrict the IsoFit grid to isochrone models with a single metallicity as determined by APOGEE measurements.
+
+
+
+
+\subsection{Preliminary Results}
+Preliminary results for this technique were obtained using the cluster M67. With deep visual, near-IR and mid-IR photometry, a published RV study and published metallicities, M67 makes an ideal candidate to test isochrones over a wide range of filters. All possible magnitude-color combinations were fed into IsoFit, and output parameters collected. Each fit parameter is converted into a gaussian parameter distribution with $\sigma$ equal to the errors from the fit, and then added together to compute the overall distribution. Heights are scaled by the minimum grid spacing ($\Delta \log(\text{Age}) = 0.05$, $\Delta (m-M) = 0.05$, $\Delta E(B-V) = 0.01$) to bring all parameters to a common scale.
+
+
+\subsubsection{Comparison}
+Using the M67 dataset, we have analyzed isochrone fits using two different tests.
+
+\begin{enumerate}
+\item \textbf{Padova vs Dartmouth:} Of the many isochrone systems available, the Padova system \citep{2002AA...391..195G} is by far the most widely used due to its ease of use and the multitude of filter magnitudes available. We will use our isochrone fit results to compare the performance of the Padova system to others, such as the Dartmouth system \citep{Dotter:2007fh} in order to determine which most accurately models a wide variety of clusters.
+
+\item \textbf{Visual vs Near-IR:} By comparing isochrone fits in visual and near-IR only CMDs, we will address the issues of isochrones in infrared bands, discussed in \ref{sec:IsoIRCal}. We will determine whether certain isochrone systems determine consistent parameters in both regions, or whether there are systematic offsets when using near-IR bands, compared to visual.
+\end{enumerate}
+
+
+\subsubsection{Full Cluster Set}
+\begin{figure} \centering
+\includegraphics[width=0.28\textwidth]{IMGs/M67FSCMD.png}
+\caption[M67 Full Data Set CMD]{Full M67 data set CMD.\label{fig:M67FullCMD}}
+\end{figure}
+
+A CMD of the M67 data set is shown in figure \ref{fig:M67FullCMD}. While the main sequence and RGB are clearly visible, there are many field stars included as well. These field stars will negatively impact the fitting, adding large numbers to the fit in equation \eqref{eq:IsoFit}. The errors in the fits, which are computed based on the scatter in distances, will also be negatively impacted by the inclusion of non-member stars in the IsoFit dataset.
+
+\subsubsection{Membership Cut}
+In order to improve the isochrone fits and cut down on the scatter in parameters, we limited our next sample only to confirmed cluster members. Using a WOCS RV study of M67 \citep{Mathieu:1997tk}, we select only confirmed single member stars within the cluster. The full data set is compared to the single member set in figure \ref{fig:M67PMCut}. The RV-trimmed set does not have any stars below $V \sim 16.5$, so it will not be able to test the low mass stars in the isochrone models, but it will test parameter determination for a very clean stellar sample. 
+
+\begin{figure}[h!] \centering
+\includegraphics[width=0.5\textwidth]{IMGs/M67PMCut.png}
+\parbox{0.7\textwidth}{\caption{$V$ vs $B-V$ CMDs for full M67 dataset (left) and only RV-confirmed single member stars (right).\label{fig:M67PMCut}}}
+\end{figure}
+
+IsoFit was run using a single metallicity of Z = 0.019, while the other three parameters were given their full range. Age ranged from 4 Myr to 14 Gyr for Padova and 250 Myr to 14 Gyr for Dartmouth. Distance ranged from 160 pc to 6.3 kpc. Reddening ranged from 0.0 to 1.5.
+
+A comparison of IsoFit results for both isochrone systems is shown in figure \ref{fig:M67PMPvD}. Both systems show close agreement in distance and age, at 3.3 Gyr and 845 pc. These values are very close to the published values of \citet{Grocholski:2003is}. Dartmouth's primary reddening peak at $E(B-V) = 0.05$ is close to the published value, with a smaller peak at higher reddening. Padova most often chooses a reddening of $E(B-V) = 0.0$, with a smaller peak at the location of Dartmouth's primary. Overall, IsoFit does a good job of picking out reasonable parameter values from a large parameter space with the RV-cleaned sample.
+
+\begin{figure}[h!] \centering
+\includegraphics[width=0.8\textwidth]{IMGs/IsoNGC2682PMPvsD.png}
+\parbox{0.8\textwidth}{\caption[Padova and Dartmouth IsoFit Results for M67]{Comparison of IsoFit results for the RV-cleaned M67 dataset. Values for Padova system in red, Dartmouth in blue. Black vertical lines are literature values from \citet{Grocholski:2003is}. \label{fig:M67PMPvD}}}
+\end{figure}
+
+\begin{figure}[h!] \centering
+\includegraphics[width=0.8\textwidth]{IMGs/IsoNGC2682PMVISvsNIR.png}
+\parbox{0.8\textwidth}{\caption[Visual vs near-IR only CMD IsoFit Results for RV-Cleaned M67]{Comparison of IsoFit results for the RV-cleaned M67 dataset. Values for visual only CMD fits in purple, near-IR only CMDs in black. Black vertical lines are literature values from \citet{Grocholski:2003is}. \label{fig:M67PMVvN}}}
+\end{figure}
+
+Figure \ref{fig:M67PMVvN} shows results from both systems when using visual or near-IR CMDs only. Besides Padova reddening determination for near-IR CMDs, which shows no clear peak, parameters determined for visual CMDs track closely with those from the near-IR. 
+
+\subsubsection{Empirical Ridgeline}
+Selecting only RV members clean the sample considerably, but at the cost of losing all low-mass stars. To trim the set of all background contamination while still keeping the low-mass members, we apply an \emph{empirical ridgeline}: a hand-drawn main sequence, subgiant branch and RGB. Two empirical ridgelines were applied to the M67 dataset, one in $V$ vs $B-V$, the other in $J$ vs $J-K_S$. The points making up each ridgeline are listed in table \ref{tab:EmpRidgeM67}.
+
+\begin{table}[h!] \centering
+\caption[Empirical Ridgelines for M67]{Points tracing the empirical ridgelines for M67.}
+\label{tab:EmpRidgeM67}
+\begin{tabular}{|c|c||c|c|}\hline
+$V$ & $B-V$ & $J$ & $J-K_S$ \\ \hline
+10.712 & 1.163 & 6.494 & 0.83 \\
+12.4 & 0.96 & 9.045 & 0.64 \\
+12.9 & 0.9 & 10.579 & 0.56 \\
+12.577 & 0.641 & 10.89 & 0.5 \\
+12.819 & 0.553 & 10.998 & 0.41 \\
+13.2 & 0.58 & 11.281 & 0.32 \\
+13.724 & 0.574 & 12.273 & 0.32 \\
+14.5 & 0.68 & 13.168 & 0.4 \\
+15.155 & 0.775 & 13.682 & 0.57 \\
+15.672 & 0.88 & 14.182 & 0.71 \\
+16.669 & 1.1 & 14.933 & 0.75 \\
+17.735 & 1.395 & 15.69 & 0.73 \\
+18.122 & 1.55 & &  \\
+18.813 & 1.645 &  &  \\
+19.7 & 1.7 &  &  \\
+\hline
+\end{tabular}
+\end{table}
+
+To clean the set, stars are grouped into 0.5 magnitude-width bins and errors in magnitude and color for each star in the bin are averaged together. Then, each data point's distance to the ridgeline is computed. If the distance is more than 3x the uncertainty in the average errors ($\sqrt{ \sigma_X^2 + \sigma_{X-Y}^2 }$), it is removed. Additionally, if a point does not have a $B$, $V$, $J$ or $K_S$ magnitude value, it is removed. The empirical ridgeline is compared to the full and RV-trimmed datasets in figure \ref{fig:M67RLCMD}. The empirical ridgeline follows the RV-trimmed set closely above $V \sim 16.5$, including many confirmed singles into the ridgeline-trimmed dataset, while accurately trimming the CMD down to $V \sim 19$. 
+
+\begin{figure}[h!] \centering
+\includegraphics[width=0.8\textwidth]{IMGs/M67RLCut.png}
+\parbox{0.8\textwidth}{\caption[Ridgeline-Cleaned Dataset for M67]{Empirical ridgeline in $V$ vs $B-V$ overlayed on the full data set (left) and RV-cleaned set (middle). Empirical ridgeline-cleaned CMD (right).\label{fig:M67RLCMD}}}
+\end{figure}
+
+\begin{figure}[h!] \centering
+\includegraphics[width=0.8\textwidth]{IMGs/IsoNGC2682PMPvsD.png}
+\parbox{0.8\textwidth}{\caption[Padova and Dartmouth IsoFit Results for Ridgeline-Cleaned M67]{Comparison of IsoFit results for the ridgeline-cleaned M67 dataset. Values for Padova system in red, Dartmouth in blue. Black vertical lines are literature values from \citet{Grocholski:2003is}. \label{fig:M67RLPvD}}}
+\end{figure}
+
+This set is fed into IsoFit with the same full-parameter grid used in the previous RV-trimmed case. Parameter distribution results for both isochrone systems are shown in figure \ref{fig:M67RLPvD}. The results from the ridgeline-trimmed set are almost identical to those from the RV-cleaned sample, with a slight change in reddening distributions. The turn-off, which is included in both data sets, is one of the most important features for age and distance determinations, leading to the similar distributions. The ridgeline-cleaned set has less scatter in color, which may have led to the shift in reddening output.
+
+\begin{figure}[h!] \centering
+\includegraphics[width=0.9\textwidth]{IMGs/M67RLCMD.png}
+\parbox{0.9\textwidth}{\caption{Best-fit isochrones to empirical ridgeline-cleaned data. Isochrones have $E(B-V) = 0.0$, d = 800 pc, age = 4 Gyr. Dartmouth isochrones in blue, Padova in red.\label{fig:M67RLIsoComp}}}
+\end{figure}
+
+In figure \ref{fig:M67RLIsoComp}, the ridgeline-cleaned CMDs are compared to the best fit isochrones in $V$ vs $B-V$, $V$ vs $V-K_S$ and $J$ vs $J-K_S$. We compare the fits of these isochrones in two areas:
+
+\begin{enumerate}
+\item \textbf{Turn-Off:} In the data, there is a distinct blue hook around the turn-off. The Padova isochrone replicates this feature accurately, while the Dartmouth isochrone has a much less pronounced hook. For the 4 Gyr isochrone, the Padova model predicts the correct amount of core overshoot.
+
+\item \textbf{Lower Main Sequence:} Both isochrone systems accurately follow the near-IR MS more closely than in the visual. Problems with the models of low-mass stars cause their temperature to be over-predicted in visual bands, and slightly under-predicted in near-IR bands. A mix of the two systems cancel these effects out, and cause the isochrones to track closely to the observed data. The Dartmouth model in $V-K_S$ fits observation down to the limiting magnitude of $V \sim 21$.
+
+These effects can be attributed to many different parts of the models. The Dartmouth model switches to an alternate equation of state for stars less than 0.7 $M_\odot$, corresponding to a magnitude of $V = 17.5$ in M67. This is approximately the location of an abrupt downward turn in the visual. Alternately, there could be a problem with atmosphere models of low-mass stars, causing incorrect absorption lines to be placed into the synthetic spectrum. By testing other clusters and other isochrone systems, we will better understand what physics cause these problems at low mass.
+\end{enumerate}
+
+
+\subsection{Future Work}\label{sec:IsoFuture}
+Continuation of this project will focus on three distinct improvement areas.
+
+\subsubsection{Additional Systems}
+Padova and Dartmouth isochrone systems are the most widely used, but they are far from the only two. Other known isochrone systems, including the Yale-Yonsei \citep{2004Ap&SS.291..261Y}, Victoria-Regina \citep{2006ApJS..162..375V, VandenBerg:2012wx}, and YREC \citep{2007ApJ...655..233A} models will be added into the isochrone fitter and run on the same clusters to compare results.
+
+The reason that Padova has become ubiquitous and Dartmouth has become second is due to the wide number of filter systems included in the isochrone files. IRAC filter magnitudes are only found in the isochrone models of Padova and Dartmouth. These filters may have to be neglected in fits to other isochrone systems, or a mechanism for creating these filter magnitudes from the models will have to be created.
+
+\subsubsection{Separating the Models}
+
+Isochrone systems consist of two parts: A core and an atmosphere. When comparing two isochrone models, an improvement in the fitting can be attributed to either the core model being better, the atmosphere model being better, or both. As of now, there are too many free parameters to deduce the accurate physics from these fits. To counter-act this, we hope to split the isochrone models into component pieces and analyze the cores separate from the atmospheres.
+
+To do this, the atmosphere models used must be standardized. The resulting fits will only be testing the stellar core models. ATLAS9 can generate atmospheres for stars of any temperature and surface gravity. Using these atmospheres, we can extract filter magnitudes and create our own isochrone sets. The best models using this set will be attributable solely to the core model; those that perform best will be noted as having the most accurate core physics. After all core models have been tested, different atmosphere models can be used as well, such as ATLAS12 or OPAL \citep{1996ApJ...464..943I}. Best fits here will be attributable only to improved atmosphere physics. By breaking the problem into two sets, underlying physics can be deduced more easily.
+
+\subsubsection{Binaries}
+Some of the spread in isochrone fits can be attributed to binary stars within the clusters themselves. Isochrone ridgelines are theoretical \emph{single} star sequences, and fits of mixed populations will result in scattered results. Using the techniques discussed in \ref{sec:BinarySED}, we will clean binaries from these data sets, and re-attempt the fittings.
+
+
+
+
+
+
+
+
+
+
+

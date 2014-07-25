@@ -1,0 +1,47 @@
+device postencap PSF.eps
+xtcolors
+
+
+expand 0.9
+lweight 3
+window 1 2 1 1
+limits 0.1 0.2 0.1 0.2
+ticksize 1 2 1 2
+ylabel Counts
+xlabel X
+box 0 0
+
+data "DATA/PSFData.txt"
+read {X 1 PSF 2}
+read {DATX 3 DAT 4}
+
+expand 0.9
+window -2 2 1 1
+limits 160 440 0 1300
+ticksize 10 50 50 200
+box 1 2
+histogram DATX (DAT*1000+100)
+ctype royalblue
+lweight 4
+connect X (PSF * 1000+100)
+
+lweight 3
+data "DATA/PSFDataD.txt"
+read {X 1 PSF 2 PSF2 3}
+read {DATX 4 DAT 5}
+
+ctype black
+expand 0.9
+window -2 2 2 1
+limits 160 440 0 1300
+ticksize 10 50 50 200
+box 1 0
+histogram DATX (DAT*1000+100)
+lweight 4
+ctype purple
+connect X (PSF*1000+100)
+connect X (PSF2*1000+100)
+ctype royalblue
+connect X ((PSF+PSF2)*1000+100)
+
+

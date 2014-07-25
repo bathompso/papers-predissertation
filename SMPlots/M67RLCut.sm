@@ -1,0 +1,66 @@
+device postencap M67RLCut.eps
+xtcolors
+lweight 3
+ptype 24 3
+
+data "CMD/M67RidgeSM.txt"
+read {RV 1 RBV 2}
+
+expand 0.9
+window 1 -2 1 2
+limits .1 .2 .1 .2
+ticksize 1 2 1 2
+ylabel V
+xlabel B-V
+box 1 2
+
+window -3 -2 1 2
+limits 0.01 2.4 21 9
+ticksize 0.1 0.5 1 2
+box 1 2
+
+expand 0.4
+data "CMD/NGC2682.TrimmedISO.txt"
+read {B 6 V 8}
+points (B-V) V
+
+expand 0.9
+lweight 4
+ctype royalblue
+connect (RBV) RV
+lweight 3
+
+
+
+ctype black
+window -3 -2 2 2
+box 1 0
+
+expand 0.4
+data "CMD/NGC2682.MembersISO.txt"
+read {B 6 V 8}
+points (B-V) V
+
+expand 0.9
+lweight 4
+ctype royalblue
+connect (RBV) RV
+lweight 3
+
+
+ctype black
+window -3 -2 3 2
+box 1 0
+
+expand 0.4
+data "CMD/NGC2682.RidgelineISO.txt"
+read {B 6 V 8}
+points (B-V) V
+
+#expand 0.9
+#lweight 4
+#ctype royalblue
+#connect (RBV) RV
+#lweight 3
+
+

@@ -1,0 +1,23 @@
+device postencap FluxComparePres2.eps
+xtcolors
+add_ctype grey 100 100 100
+data "DATA/isoc_z019.9677.flux.dat"
+read {lambda 1 F1 33 F2 67 BS 70 BS2 80}
+data "DATA/starflux.txt"
+read {binlambda 1 binflux 2 binerr 3}
+ptype 24 0
+lweight 3
+
+window 1 2 1 2
+limits 2.4 4 0 90
+ticksize -1 5 5 20
+expand 0.9
+xlabel Wavelength (nm)
+ylabel Flux (Jy)
+box 1 2
+
+ctype red
+points (lg(binlambda)) (binflux)
+error_y (lg(binlambda)) (binflux) (binerr)
+
+

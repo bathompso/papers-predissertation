@@ -1,0 +1,15 @@
+\section{Applications}
+
+\subsection{Isochrones}
+The application of isochrone fitting is apparent: the best model represents the most accurate physics. By testing isochrone models over a wide range of cluster ages and metallicities, the intricacies of stellar evolution can be understood. If an isochrone set works best for a cluster with low Z, but not for a cluster with high Z, then perhaps the atmosphere model it uses isn't the correct one. If isochrone set works best for a medium-aged and old cluster, it might contain the most accurate physics of stellar evolution. If an isochrone set works best for young clusters, then its physics of stellar formation may be the most accurate.
+
+In addition to this better understanding of the physics of stars, isochrone sets that translate well between visual and infrared will be helpful in classifying many of the newly discovered open clusters. Getting reliable distances, ages and rough metallicities for dozens or hundreds of new clusters throughout the disk of the galaxy will provide great insight into the formation and dynamics of the Milky Way.
+
+There are plenty of ways to apply this isochrone fitting technique, and once the codes are in place to piece-wise add parts of different isochrone systems, the results will be largely enlightening.
+
+\subsection{Binaries}
+Output from the binary fitter is ready for a multitude of applications. One of the larger applications is the comparison to numerical simulations of cluster evolution. Binary results from clusters with a wide range of ages allow for ``snapshots'' of cluster evolution, complete with the dynamical information from the binaries themselves. Detailed N-body simulations, such as in \citet{Hurley:2005ff} for M67 allow for a star-by-star simulation of an open cluster throughout its lifetime. WOCS has begun to work with Dr. Hurley to revise his simulations starting with observationally based initial conditions. The young clusters M35 and M37, both included in this project, will act as observational initial conditions for the simulations. Not only will these initial conditions state the fraction of binaries, but also the distribution of primary and secondary masses, which is important for the simulations. 
+
+Additionally, binary results from intermediate-aged to old clusters will provide checks on the output of these simulations. These results can help understand other physical processes such as cluster destruction and non-standard star formation.
+
+Detailed binary information on young and old clusters will provide tests of the outcomes of the stellar and dynamical evolution derived from the N-body simulations that are key for determining the frequency of non-standard stars, such as blue stragglers. Our results for binary mass distributions will also be compared to field population distributions \citep{Duquennoy:1991wk}. We will work with Dr. Hurley to integrate our findings into the simulation analysis.

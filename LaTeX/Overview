@@ -1,0 +1,219 @@
+\section{Project Overview} 
+
+Through this project we aim to answer several questions:
+
+\begin{enumerate}
+\item \emph{Which stellar evolution model is most accurate?}
+The process of stellar evolution is still not completely understood, and several evolution models have been published. These models will be compared to our clean stellar samples for a cluster sample with a variety of ages and metallicities in order to determine which model works best. Finding where these models match observations, and where they fail, will give insight into the underlying physics.
+
+\item \emph{What is the binary fraction in star clusters and how does it vary as a function of primary star mass?}
+The formation of binaries stars in a clustered environment is difficult to study due to the different formation time scales. By studying clusters of different ages, we will be able to constrain the ``initial'' binary population, needed for cluster simulations. We will also determine whether mass ratio is dependent on primary star mass, which will provide additional insight into mechanisms of binary formation.
+
+\item \emph{How does the binary population affect stellar and cluster evolution?}
+Creation processes for non-standard stars such as blue stragglers and sub-subgiants are hypothesized to involve a binary system. Directly comparing binary fraction to non-standard star frequency for multiple clusters will allow testing of these formation models. Our binary results will also be directly compared to N-body models of cluster evolution in order to observe the binary population's effects on cluster evolution and destruction.
+\end{enumerate}
+
+The rest of this section will discuss the instruments, cluster sample and data to be used in this project. Section \ref{sec:Isochrones} will discuss testing of stellar evolution models, called isochrones, to this cluster sample. Section \ref{sec:BinarySED} will use these stellar models to identify and characterize low-mass binary systems.
+
+
+
+\subsection{Instrumentation and Processing}
+
+\subsubsection{Visual Wavelength Detectors}
+Astronomy was ushered into a new era in 1979 when the first charge-coupled device (CCD) detector was installed on the 1-meter telescope at Kitt Peak National Observatory. Before this, photographic plates had been the standard, but the new CCD cameras were much more efficient, allowing the detection of fainter objects than even the best photographic plates.
+
+A CCD detector is an array of individual CCDs that make up the pixels of the camera. CCDs use a layer of silicon as the main optical element, so when a photon strikes the silicon, an electron is excited to the conduction band and transferred to a ``gate'' where the charge is stored. When an image is ready to be read out, the first row in the array dumps its charge into a charge amplifier, converts that charge to a voltage, and stores that voltage as a numerical value for that pixel. Once the first row is completely converted, an electric field is applied to transfer the charge from the second row into the first, where it is then read out. This process continues until all rows of the chip have been counted.
+
+Silicon has a band gap height of roughly 1.0 eV, depending on temperature. This corresponds to a photon with a wavelength of 1240 nm, around the location of the $J$ filter. Photons with wavelengths greater than this (most of the infrared range) will not be able to excite an electron to the conduction band, and therefore different types of detectors must be used for infrared filters.
+
+\subsubsection{Infrared Wavelength Detectors}\label{sec:IRDet}
+IR detectors function similarly to CCDs. A semiconductor is struck by a photon, exciting it to the conduction band and transferring the charge. Instead of storing the charge in a gate and reading out all pixels at the end of an exposure, each pixel of a IR detector has its own readout amplifier. As charge accumulates, the amplifier keeps track of the accumulated voltage, and results can be accessed and stored when required. Reads of the chip are \emph{non-destructive}, meaning that the accumulated charge is not altered by measuring a pixel's value, much different than for a CCD. IR detectors allow for reading out only parts of a chip, or reading out a chip multiple times throughout an exposure.
+
+There are several different types of semiconductors used in IR detectors. Mercury cadmium telluride (HgCdTe) detectors have a band gap of 0.5 eV, corresponding to a limiting photon wavelength of 2500 nm, making them ideal for near-IR studies. Another choice is indium antimonide (InSb) which has a band gap of 0.25 eV (5000 nm), allowing for use in the near- and part of mid-IR range. For further mid-IR filters, silicon arsenide (SiAs) detectors are ideal due to their very small band gap of 48 meV (25 $\mu$m).
+
+
+\subsubsection{Image Reduction}
+To prepare a science image for analysis, the following corrections must first be made to account for a variety of instrumental effects. As CCDs and IR detectors function differently, each correction will be labelled with the type(s) of detectors it needs to be applied to.\\
+
+\noindent \textbf{Bias Correction [CCD]:} To transfer charge between rows in a CCD, an electric field is applied. The energy stored in this electric field may cause extra electrons to be excited as the charge migrates across the chip. These extra electrons are not part of the signal, and must be corrected out. To remove them, the chip is read out multiple times in succession without exposing. These ``0 second'' images will show no counts besides those from the charge transfer process. Bias frame counts are subtracted from all images. \\
+
+\noindent \textbf{Dark Current [CCD, IR]:} The detector is usually cooled to liquid nitrogen temperatures, but this still leaves some thermal energy that can excite an electron within the detector to the conduction band. Additionally, there may be defects on the chip that cause some pixels to register large counts regardless of where they are pointed, called \emph{hot pixels}.
+
+To correct for this, an image is taken with the shutter closed. Because no light from the sky hits the chip, all the detected counts are from the electronics themselves. Averaging several of these \emph{dark frames}, and subtracting bias counts, will determine the average thermal excitation counts for each pixel as well as other electronic defects. Dark frames are subtracted from all images. \\
+
+\noindent \textbf{Flat Fielding [CCD, IR]:} When a photon strikes a pixel of the detector, an electron will not always be excited and recorded for that pixel. The percent chance that an incoming photon will register a count with the detector is called the \emph{quantum efficiency}. The quantum efficiency of a detector is usually above 90\%, but it is not always the same for each pixel. In addition, the filter being used may not be manufactured perfectly or there may be dust grains lying on the various surfaces of the telescope. Imperfections of the filter may cause light to be refracted in unintended ways, limiting the effectiveness of certain pixels on the chip. This effect is lumped into each pixels' overall efficiency.
+
+Correcting for this effect can be accomplished in two ways. First, the telescope can be pointed at a flat surface that is uniformly lit by a lamp, or multiple lamps. The resulting image, called a \emph{flat field}, should have identical counts for all pixels, but due to the non-uniform efficiency, some pixels will register fewer counts.
+
+The lamps used for flat-fielding have a specific temperature, so the flux through some filters may not be very high (for example, $U$ and $B$ filters). Instead of using the lamps, the telescope is pointed at several different points in the sky and images are taken. If the images are taken high enough in the sky, away from high light pollution areas near the horizon, the photon counts from the sky should be roughly constant. Combining these multiple images using a median will create a \emph{sky flat}, removing any stars in the frames and leaving only a sky background. Similar to the flat field image, this sky flat should be uniform, but some pixels will register fewer counts due to lowered efficiency.
+
+Once the flat image is taken (be it a flat field or sky flat), the bias and dark frame are subtracted (to remove electronic effects), and it is then normalized. In the normalized image, each pixel's value represents its efficiency. The science image counts are divided by the normalized flat field to bring all pixels to the same effective level. Analogous to dark frames, which correct for effects from the electronics, flat fielding corrects for effects within the optical elements of the system.
+
+
+\subsubsection{Magnitude Measurements}
+Measuring star brightnesses, and then magnitudes, from images is accomplished through a process called \emph{photometry}. There are two different approaches to photometry, described below. \\
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=0.37\textwidth]{IMGs/AperturePhotometry.jpg}\vspace{10px}
+\parbox{0.7\textwidth}{\caption{Aperture photometry set-up for a fictional star. Blue is image circle, green indicates sky annulus. As can be seen, if stars were any closer together one might fall within sky annulus. \label{fig:aperturephot}}}
+\end{center}
+\end{figure}
+
+\noindent \textbf{Aperture Photometry:} This technique uses three circles, called apertures, to determine the number of photons from a star. The setup of the three apertures for a fictional star is shown in figure \ref{fig:aperturephot}. The innermost circle, called the \emph{image circle}, is centered on the star and has a radius such that it encloses the entire image of the star. The number of photon counts within this circle come from two effects: photons coming from the star itself, as well as photons from the sky background. To remove these sky photons, the next two circles are used to form a ring, called the \emph{sky annulus}. The counts within the sky annulus are assumed to all come from the sky background, and is used to determine the average number of sky photons per pixel in the image. Using this information, the sky photon counts can be removed from the image circle, leaving only a count of photons from the star.
+
+The benefit of this technique is that it is simple to do and fast to compute. The only input parameters are the three circle radii, and a computer can determine magnitudes for thousands of stars very quickly. The breakdown of this technique, however, happens when stars are close together. If another star falls within the sky annulus, the assumption that all counts from the sky annulus are from background sources will not be valid. For sparse fields, aperture photometry is the most efficient way to determine magnitudes. \\
+
+\noindent \textbf{PSF Photometry:} Diffraction due to light passing through the aperture of the telescope produces a pattern called an \emph{Airy disk}. Point-source function (PSF) photometry measures the magnitude of a star by fitting a mathematical function (Gaussian / Lorentzian) to the Airy disk, then integrating over it to find the total photon counts. Figure \ref{fig:PSFPhot} shows an example of a PSF fitting. In both cases, the sky background is roughly 100 counts, setting the baseline of the gaussian fit function. The power of PSF photometry is shown in the right hand panel of figure \ref{fig:PSFPhot}, where two stars in the frame partially overlap. Aperture photometry can not handle crowded fields, but PSF fittings are able to separate partially overlapping brightness profiles, allowing accurate magnitudes in dense environments. This approach is especially useful for clusters, where the density of stars is higher than in the field.
+
+\begin{figure} \centering
+\includegraphics[width=0.8\textwidth]{IMGs/PSF.png}
+\parbox{0.8\textwidth}{\caption[Example of PSF Photometry]{Brightness profiles along a single row of a chip. \emph{Left:} Gaussian fitting to a single star, sky background of $\sim$ 100 counts. \emph{Right:} Gaussian fitting of two overlapping stars, sky background of $\sim$ 100 counts. Blue curve is sum of both purple individual star gaussian fits.\label{fig:PSFPhot}}}
+\end{figure}
+
+PSF fitting is more computationally difficult than aperture photometry, as the parameters of the fit (e.g. $\sigma$ for a gaussian) may change with position on the chip. However, these extra parameters allow for more accurate fits of the data and can produce more reliable results. The PSF photometry in this project was completed using the program DAOPHOT II \citep{1987PASP...99..191S}. DAOPHOT allows variation PSF parameters linearly or quadratically across the chip, as well as the option to use a gaussian, lorentzian, or sum of both as the shape for the PSF. A majority of the data in this project is derived using PSF photometry.
+
+
+
+
+\subsection{Cluster Sample}
+Open clusters for this project were chosen as part of the WIYN Open Cluster Survey (WOCS), a broad collaboration of roughly 15 astronomers and their students dedicated to providing a comprehensive study of a select set of open clusters. WOCS is utilizing photometry, astrometry, spectroscopy and theory to expand the number of open clusters that provide a foundation for stellar astrophysics.  Some of the clusters chosen for this project already have high quality RV studies with which to compare our binary results.
+
+In total, 18 WOCS clusters will be analyzed using our techniques. The distribution of cluster parameters for our sample is shown in figure \ref{fig:ClusterDist}. Ages range from 25 Myr to 9 Gyr while [Fe/H] varies from $-0.38$ to $+0.32$ --- 40\% to 200\% the Iron content of the Sun.
+
+\begin{figure} \centering
+\includegraphics[width=0.7\textwidth]{IMGs/ClusterDist.png}
+\parbox{0.7\textwidth}{\caption[Distribution of Project Cluster Ages and Metallicities]{Distribution of 18 project clusters in age and metallicity, [Fe/H]. X's represent clusters which do not have any published metallicity information. \citep{2002AA...389..871D}\label{fig:ClusterDist}}}
+\end{figure}
+
+Of the 18 total clusters, five currently have complete data sets and will comprise much of the preliminary results. Descriptions and parameters of these clusters are listed below.\\
+
+\noindent \textbf{NGC2168 [M35] (100 Myr, [Fe/H] = -0.16)}: The young cluster M35 provides an excellent starting point for cluster evolution. Additionally, M35 is one of four clusters that have detailed companion RV-based WOCS binary studies \citep{Geller:2010hn}, and will allow for checks of binary results. Another cluster in the sample, M37, has a similar age (350 Myr), but different chemistry ([Fe/H] = +0.09). Comparison of results between M35 and M37 will allow us to explore environmental effects on ``initial'' binary population. \\
+
+\noindent \textbf{IC 4651 (1.1 Gyr, -0.1 dex)}: A mid-point in the cluster evolution sequence, IC 4651 provides a check on N-body simulations of early cluster evolution. \\
+
+\noindent \textbf{NGC 2682 [M67] (4.3 Gyr, +0.0 dex)}: The cluster M67 is the one of the most fundamental in the basis of stellar astrophysics due to its age and chemistry that are nearly identical to the Sun. As an important open cluster, some stellar evolution models have been calibrated to M67 \citep{2006ApJS..162..375V}. Comparing these models to those calibrated on globular clusters may illuminate physical differences between the two types. \\
+
+\noindent \textbf{NGC 188 (7 Gyr,  -0.01 dex)}: NGC 188 is the most studied WOCS cluster with photometry, astrometry and RV-based binary studies \citep{1998AJ....116.1789V,2008AJ....135.2264G}, making it an ideal candidate for preliminary work. \\
+
+\noindent \textbf{Collinder 261 (9 Gyr, -0.14 dex)}: Being one of the oldest open clusters in the Galaxy, Collinder 261 is the ``end'' of cluster dynamical evolution in the Milky Way Disk. Results from NGC 188 can be compared to those from Collinder 261 in order to understand metallicity's effect on the final stages of cluster evolution (analogous to M35/M37 on the young end). \\
+
+
+
+
+\subsection{Available Data}
+Data that will be used in this project were compiled from a number of sources.
+
+\subsubsection{Visual Data Sources [0.3 -- 1.0 $\mu$m]}
+
+\noindent \textbf{Sloan Digital Sky Survey (SDSS):} Beginning operations in 2000, the SDSS Legacy Survey aimed to provide uniform and well-calibrated photometry for much of the northern sky. Observations were taken using the SDSS 2.5m telescope at Apache Point Observatory (APO) in the Sacramento Mountains of New Mexico. To efficiently cover large contiguous areas of sky, SDSS observations were taken using a technique called \emph{drift scanning}. In drift scanning, the telescope is kept stationary as the stars move horizontally across the chip over time. The CCD chip is read out at exactly the same speed as the stars move across a single pixel, allowing for the electrons from a star to track with it. While a star may only be located on a single pixel for less than a second, the final image will have an integrated exposure length of almost a minute.
+
+SDSS imaged the sky using five different filters, $ugriz$, and to do so built one of the most complex cameras in all of astronomy, shown in figure \ref{fig:SDSSCam}. Each column of the camera contains 5 CCD chips, each with a different SDSS filter above it. A star would move across the column of chips (top to bottom in the picture), being imaged through each of the five filters in quick succession. To cover large areas of sky at a time, the camera contained six of these filter columns.
+
+\begin{figure} \centering
+\includegraphics[width=0.9\textwidth]{IMGs/SDSSCam.jpg}
+\caption[SDSS Telescope and Camera]{\emph{Left:} SDSS 2.5m telescope at APO.$^1$ \emph{Right:} SDSS Legacy Survey camera.$^2$ \label{fig:SDSSCam}}
+\end{figure}
+
+\addtocounter{footnote}{1}
+\footnotetext[\value{footnote}]{http://astro.uchicago.edu/$\sim$frieman/SDSS-telescope-photos/sdss-telescope.jpg}
+\addtocounter{footnote}{1}
+\footnotetext[\value{footnote}]{http://www.sdss.org/dr3/instruments/imager/faceplat.gif}
+
+From 2000 to 2008, the SDSS Legacy Survey imaged more than 8200 degrees of sky, covering several of the clusters in this project. Magnitudes released from SDSS were measured using aperture photometry; such a large area of sky required the least computationally costly approach. Most of the region imaged by the Legacy Survey was in the low density halo of the Milky Way, where aperture photometry works accurately.
+
+Magnitudes for stars in the densely packed globular and open clusters in the imaged region were unable to be measured by the aperture photometry technique. \citet{2009ApJ...700..523A} re-derived magnitudes for several globular and open clusters within the Legacy Survey region using PSF photometry. The open clusters NGC 2682 (M67), NGC 2420 and NGC 6791 were included in this work, with magnitudes down to $g$ $\sim 23$. \\
+
+\noindent \textbf{MOSAIC:} The MOSAIC instrument, outfitted with $UBVRI$ filters, contains an array of eight 2048-by-4096 pixel CCD chips to create a single 8192-by-8192 pixel image. While it has been attached previously to the 4-m telescope at Kitt Peak National Observatory (KPNO) in Arizona, the data used in this project is from the WIYN 0.9-m telescope at KPNO. With roughly a square degree field of view, the MOSAIC images will allow us to analyze the entire spatial extent of any cluster observed.
+
+WOCS collaborator Ata Sarajedini obtained images of several open clusters with MOSAIC: NGC 1039 (M34), NGC 1960 (M36), NGC 2099 (M37), NGC 2168 (M35) and NGC 2682 (M67). $UBVRI$ photometry for M35 has already been obtained (Sarajedini \& Kinemuchi, \emph{private comminucation}) down to $V \sim 20$. Photometry of the other clusters is currently underway at TCU. \\
+
+\subsubsection{Near-Infrared Data Sources [1.0 -- 2.5 $\mu$m]}
+\noindent \textbf{2-Micron All Sky Survey (2MASS):} Similar to the goals of SDSS Legacy Survey, 2MASS aimed to observe the entire sky in the near-IR and catalog all detected stars and galaxies. To image the entire sky, 2MASS utilized two different observatories: Mt. Hopkins in Arizona for the northern hemisphere, and Cerro Tololo Inter-American Observatory (CTIO) in Chile for the southern hemisphere. Beginning operations in 1997, 2MASS achieved its goal by 2001; covering over 99\% of the sky, and cataloging more than 300 million point sources. The 2MASS data set is \emph{shallow} --- it only contains fairly bright stars --- with limiting magnitudes in $JHK_S$ of 16, 15, and 14.5, respectively.
+
+\begin{figure}[h!] \centering
+\includegraphics[width=0.6\textwidth]{IMGs/2MASSCam.png}
+\parbox{0.8\textwidth}{\caption[2MASS Instrumentation Diagram]{Diagram of 2MASS Camera. Each filter is labelled.\label{fig:2MASSCam}}}
+\end{figure}
+
+Each 2MASS telescope utilized a custom camera in order to efficiently image the sky using all 3 near-IR filters ($JHK_S$). Instead of revisiting the same fields three times, the 2MASS instrument observed using all three filters in parallel. Incoming light is split using a dichroic for the $J$ filter. Light below a certain wavelength is reflected to the $J$ filter camera, while the rest of the light is transmitted. Another dichroic, this time for the $H$ filter, splits the remaining light to the $H$ and $K_S$ filters. Each filter is coupled with a HgCdTe IR detector. Using this setup, shown in figure \ref{fig:2MASSCam}, each field can be observed in all filters under the same conditions. \\
+
+\noindent \textbf{NOAO Extremely Wide Field Infrared Imager (NEWFIRM):} NEWFIRM is a 1-2.4 $\mu$m IR camera, containing 2MASS $JHK_S$ filters, and located on the Mayall 4-m telescope at KPNO. NEWFIRM consists of a grid of four 2048-by-2048 InSb detectors to create a 4096-by-4096 image. Dr. Frinchaboy observed the clusters NGC 2099 (M37), NGC 2168 (M37) and NGC 2682 (M67) in early 2008. While NEWFIRM's field of view is only a quarter of a square degree (half degree on each side), multiple pointings were used to generate a seamless square degree image around each cluster.
+
+The deep images ($10-40$ min exposures) have been reduced at TCU using PSF photometry. Calibrating to 2MASS magnitudes, this yielded magnitudes down to $J \sim 21$. Combined with 2MASS, these clusters have near-IR photometry over a 15 magnitude range, corresponding to a brightness ratio between the brightest and dimmest stars of nearly 1 million. The NEWFIRM photometry will allow study of low-mass systems in these clusters. \\
+
+\noindent \textbf{Infrared Side Port Imager (ISPI):} Dr. Frinchaboy, along with WOCS collaborator Karen Kinemuchi, obtained deep near-IR data of the clusters IC 4651 and Collinder 261 taken with ISPI on the Blanco 4-m telescope at CTIO. ISPI consists of a 2048-by-2048 HgCdTe IR detector with a 10 arcminute field of view. Due to the small field of view, images cover only the core of each cluster. Photometry has been completed (Kinemuchi, \emph{private communication}), yielding magnitudes down to $J \sim 18$. \\
+
+\noindent \textbf{Near Infrared Imager (NIRI):} The Gemini Observatory consists of 8-m telescopes in both hemispheres: Gemini-North on Mauna Kea in Hawaii, and Gemini-South on Cerro Pach\`{o}n in Chile. $J$ and $K_S$ images of the cluster NGC 6791 were taken using Gemini-North by WOCS collaborator Ted von Hippel over several nights in 2003. These observations utilized Gemini-North's NIRI instrument; a 1024-by-1024 InSb detector with a field of view of 2 arcminutes. Images were sent to TCU where I analyzed them using PSF photometry. While lacking in spatial coverage, the NIRI images contain faint cluster stars, with a limiting magnitude of $J \sim 21$. \\ 
+
+\noindent \textbf{CPAPIR:} CPAPIR is a 2048-by-2048 HgCdTe-based IR camera attached to the 1.5-m telescope at CTIO, giving a half degree field of view. Dr. Frinchaboy has obtained $J$ and $K_S$ images of the clusters NGC 3680 and Melotte 66 in February 2007. These images will be reduced and photometered by undergrads either at TCU, or as part of a REU project.
+
+\subsubsection{Mid-Infrared Data [2.5 -- 10 $\mu$m]}
+Mentioned in \ref{sec:FilterSys}, atmospheric absorption beyond 2.5 $\mu$m becomes too strong to attempt observations from the ground. The mid-IR data in this project was taken using the \emph{Spitzer} Space Telescope's Infrared Array Camera (IRAC) \citep{2004ApJS..154...10F}. For the shorter wavelength IRAC filters, [3.6][4.5], a InSb IR detector is used. For longer wavelengths, InSb detectors do not work (band gap limiting wavelength of 5 $\mu$m); the two longer wavelength IRAC filters, [5.8][8.0], are fed to a SiAs detector instead.
+
+IRAC observations were obtained of all 18 clusters by Dr. Frinchaboy. The data were taken in High Dynamic Range (HDR) mode, which captures two images: a 1.2s image and a 30s image. The two images are then combined in order to ``fix'' saturation of bright stars in the 30s image by using data from the 1.2s image. This approach provides photometry for both bright and faint cluster stars simultaneously.
+
+The photometry was processed utilizing the Galactic Legacy Infrared Mid-Plane Survey Extraordinaire (GLIMPSE) data pipeline \citep{2003PASP..115..953B}, which was modified to handle the HDR data. Average limiting magnitudes in each band are 18, 17, 15 and 14, respectively.
+
+\subsubsection{Membership Data}
+When observing a cluster, not all stars within the frame are \emph{members} of the cluster. Stars that fall along the same line of sight but are in front of or behind the cluster may be confused with cluster stars on a two dimensional image. Our analysis assumes all stars having similar properties, so removing these non-member stars from the sample is beneficial. There are two ways to determine membership, with one way being to use RV measurements. All member stars will have RVs close to the bulk RV of the cluster. Stars in the field will be moving with different speeds, according to their orbital path around the center of the galaxy. Trimming out stars with non-consistent RVs will remove many of the non-member stars in the frame.
+
+A RV gives a star's velocity along the line of sight to Earth, while \emph{proper motion} gives the star's velocity in the other two dimensions. A proper motion is measured by taking images of the cluster over a long time baseline --- usually years, sometimes decades --- and correlating star positions through time. Distant objects, such as galaxies, are assumed to not move over such a time scale, and positions of the stars in each frame are accurately measured in relation to these stationary objects. Computing the change in position of a star as a function of time will yield the proper motion of the star in units of milliarcseconds per year. Only with knowledge of the distance to a star can a proper motion velocity be turned into true velocity (in m/s). Similar to RV member selection, stars with proper motion velocities inconsistent with the bulk motion of the cluster are rejected as non-members.
+
+Having membership data (RV or PM) is key to lightening the load on the fitting codes used in this project. Having membership studies will also provide an important check on our fitting routines if they declare confirmed member stars from previously published studies as non-members.
+
+
+\subsubsection{Data Overview}
+Table \ref{table:clusters} summarizes the available data for use in this project, from the sources listed above as well as from literature. 2MASS near-IR and IRAC mid-IR data are available for all clusters and are therefore not listed in table \ref{table:clusters}. The clusters bolded in table \ref{table:clusters} have complete data sets and were used in this preliminary work. Data sources italicized are ones that are currently being processed and are not currently available for analysis.
+
+\begin{table}[h!] \centering \small
+\begin{tabular}{| l | c | c | c |} \hline
+\textbf{Cluster} & \textbf{Visual Data} & \textbf{NIR Data} & \textbf{Membership Data} \\
+\hline \hline
+Berkeley 39 & & & \\
+\hline
+\textbf{Collinder 261} & \citet{Gozzoli:1996uj} & ISPI & \\
+\hline
+IC 4651 & & ISPI & \\
+\hline
+Melotte 66 & & \emph{CPAPIR} & \\
+\hline
+\multirow{2}{*}{\textbf{NGC 188}} & WOCS & & RV \citep{2008AJ....135.2264G} \\
+& \citet{2004PASP..116.1012S} & & PM \citep{2003AJ....126.2922P} \\
+\hline
+NGC 1039 (M34) & & & \\
+\hline
+NGC 1817 & & & PM \citep{2004AA...426..819B} \\
+\hline
+NGC 1912 (M38) & \emph{MOSAIC} & & \\
+\hline
+NGC 1960 (M36) & \emph{MOSAIC} & & \\
+\hline
+NGC 2099 (M37) & \emph{MOSAIC} & NEWFIRM & \\
+\hline
+NGC 2158 & & & \\
+\hline
+\textbf{NGC 2168 (M35)} & MOSAIC & NEWFIRM & \\
+\hline
+NGC 2420 & SDSS & & \\
+\hline
+NGC 2477 & & & \\
+\hline
+\multirow{3}{*}{\textbf{NGC 2682 (M67)}} & SDSS & & \\
+& \emph{MOSAIC} & NEWFIRM & PM \citep{2008AA...484..609Y} \\
+& \citet{2008AA...484..609Y} & & \\
+\hline
+NGC 3680 & & \emph{CPAPIR} & \\
+\hline
+\multirow{2}{*}{NGC 6791} & \multirow{2}{*}{SDSS} & \citet{2005AJ....129..656C} & \\
+& & NIRI & \\
+\hline
+NGC 6819 & & & RV \citep{2009AJ....138..159H} \\
+\hline
+\end{tabular}
+\caption{Available data for all clusters in this project.\label{table:clusters}}
+\end{table}
+
+
+
+

@@ -1,0 +1,29 @@
+device postencap Ridgeline.eps
+CTYPE = CTYPE() concat 150 + 256*(150 + 256*150)
+CTYPE = CTYPE(STRING) concat 'grey'
+
+#######################################################
+expand 1
+lweight 4
+window -2 1 1 1
+limits 0 1.5 9.7 -7.5
+ticksize 0.1 0.4 0.5 2              
+expand 1.1
+xlabel J-K
+ylabel K
+box 1 2
+ptype 24 3
+data "DARTMOUTH/isoc_z019.new.dat"
+read {age 1 mini 2 mact 3 logT 4 logg 5 junk 6 mbol 7 U 8 B 9 V 10 R 11 I 12 SU 13 SG 14 SR 15 SI 16 SZ 17 J 18 H 19 K 20 B1 21 B2 22 B3 23 B4 24}
+ctype black
+connect (J-K) (K) if (age == 9.677)
+
+data "DATA/ridgeline.dat"
+read {mass 1 J 2 K 3}
+ctype red
+expand 1.0
+points (J-K) (K) if (mass < 2)
+expand 1.5
+points (J-K) (K) if (mass > 2 && mass < 3.5)
+expand 2.0
+points (J-K) (K) if (mass > 3.5)

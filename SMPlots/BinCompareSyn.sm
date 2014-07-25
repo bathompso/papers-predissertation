@@ -1,0 +1,55 @@
+device postencap BinCompareSyn.eps
+xtcolors
+lweight 3
+
+data "BINDATA/syntheticCMD.txt--compare.txt"
+read {opri 1 osec 2 tpri 3 tprie 4 tsec 5 tsece 6}
+ptype 24 0
+
+ctype black
+expand 1
+window 1 -4 1 1
+limits 0.0 1.2 -17 17
+ticksize 0.1 0.3 5 10
+expand 0.9
+xlabel m_{pri} (M_\odot)
+ylabel m_{pri} %err
+box 1 2
+expand 0.6
+points opri ((opri-tpri)/opri*100)
+error_y opri ((opri-tpri)/opri*100) (tprie/opri*100)
+#relocate 0 0
+#draw 1.5 0
+
+ltype 2
+relocate 0 10
+draw 1.5 10
+relocate 0 -10
+draw 1.5 -10
+
+ltype 3
+relocate 0 5
+draw 1.5 5
+relocate 0 -5
+draw 1.5 -5
+
+ltype 0
+ctype black
+expand 1
+window 1 -4 1 2
+limits 0.0 1.2 -50 50
+ticksize 0.1 0.3 10 20
+expand 0.9
+ylabel m_{sec} %err
+box 0 2
+expand 0.6
+points opri ((osec-tsec)/osec*100)
+error_y opri ((osec-tsec)/osec*100) (tsece/osec*100)
+#relocate 0 0
+#draw 1.5 0
+
+ltype 2
+relocate 0 10
+draw 1.5 10
+relocate 0 -10
+draw 1.5 -10

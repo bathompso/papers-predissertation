@@ -1,0 +1,53 @@
+device postencap BinSingleSyn.eps
+xtcolors
+CTYPE = CTYPE() concat 150 + 256*(150 + 256*150)
+CTYPE = CTYPE(STRING) concat 'grey'
+lweight 4
+
+data "BINDATA/singlesyntheticCMD.txt--binary.txt"
+read {RA 1 Dec 2 UD 3 BD 4 VD 5 RD 6 ID 7 SUD 8 SGD 9 SRD 10 SID 11 SZD 12 JD 13 HD 14 KD 15 B1D 16 B2D 17 B3D 18 B4D 19 binary 20 RVbinary 21 maxchi 22}
+data "DARTMOUTH/isoc_z019.new.dat"
+read {Dage 1 j1 2 j2 3 j3 4 j4 5 j5 6 j6 7 DU 8 DB 9 DV 10 DR 11 DI 12 DSU 13 DSG 14 DSR 15 DSI 16 DSZ 17 DJ 18 DH 19 DK 20 DB1 21 DB2 22 DB3 23 DB4 24}
+data "PADOVA/isoc_z019.new.dat"
+read {Page 1 k1 2 k2 3 k3 4 k4 5 k5 6 k6 7 PU 8 PB 9 PV 10 PR 11 PI 12 PSU 13 PSG 14 PSR 15 PSI 16 PSZ 17 PJ 18 PH 19 PK 20 PB1 21 PB2 22 PB3 23 PB4 24}
+ptype 24 0
+
+
+##### V-K isochrone with labeled singles and binaries
+ctype black
+expand 1
+window -2 1 1 1
+limits 0.0 6.8 19 2
+ticksize 1 4.0 1 4
+expand 1.1
+xlabel V-K
+ylabel V
+box 1 2
+expand 0.5
+ctype green
+connect ((DV-DK)) (DV+4.0) if (Dage == 9.677)
+ctype blue
+connect ((DV-DK)) (DV+3.247) if (Dage == 9.677)
+ctype black
+points (VD-KD) VD if (binary == 1)
+ctype red 
+points (VD-KD) VD if (binary == 2)
+####################################################
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

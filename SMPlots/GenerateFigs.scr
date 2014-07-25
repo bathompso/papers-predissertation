@@ -1,0 +1,55 @@
+sm < Filters.sm
+convert -density 200 -crop 0x95%+0+50% Filters.eps Filters.png
+
+sm < IsoCompare.sm
+convert -density 200 -crop 0x53%+0+700 IsoCompare.eps IsoCompare.png
+
+sm < HistNGC2682PM.sm
+convert -density 200 -crop 0x40%+0+350 HistNGC2682PM.eps IsoNGC2682PMVISvsNIR.png
+convert -density 200 -crop 0x30%+0+1050 HistNGC2682PM.eps IsoNGC2682PMPvsD.png
+
+sm < HistNGC2682RL.sm
+convert -density 200 -crop 0x40%+0+350 HistNGC2682RL.eps IsoNGC2682RLVISvsNIR.png
+convert -density 200 -crop 0x30%+0+1050 HistNGC2682RL.eps IsoNGC2682RLPvsD.png
+
+sm < BinSingleSyn.sm
+convert -density 200 -trim 55%x96%+0+0 BinSingleSyn.eps BinSingleSyn.png
+
+sm < BinCompareSyn.sm
+convert -density 200 -crop 0x50%+0+750 BinCompareSyn.eps BinCompareSyn.png
+
+sm < BinM67Test.sm
+convert -density 200 -crop 98%x95%+0+50 BinM67Test.eps BinM67Test.png
+
+sm < FluxCompare.sm
+convert -density 200 -crop 98%x95%+0+50 FluxCompare.eps FluxCompare.png
+
+sm < Ridgeline.sm
+convert -density 200 -trim 57%x97%+0+0 Ridgeline.eps Ridgeline.png
+
+sm < M3CMD.sm
+convert -density 200 -trim 57%x97%+0+0 M3CMD.eps M3CMD.png
+
+sm < ClusterDist.sm
+convert -density 200 -crop 0x48%+0+800 ClusterDist.eps ClusterDist.png
+
+sm < PSF.sm
+convert -density 200 -crop 0x45%+0+800 PSF.eps PSF.png
+
+sm < OvershootHook.sm
+convert -density 200 -crop 30%x45%+50+50 OvershootHook.eps OvershootHook.png
+
+sm < M67PMCut.sm
+convert -density 200 -crop 98%x95%+0+50 M67PMCut.eps M67PMCut.png
+
+sm < M67RLCut.sm
+convert -density 200 -crop 0x50%+0+70 M67RLCut.eps M67RLCut.png
+
+sm < M67RLCMD.sm
+convert -density 200 -crop 0x45%+0+70 M67RLCMD.eps M67RLCMD.png
+
+sm < M67FSCMD.sm
+convert -density 200 -trim 57%x97%+0+0 M67FSCMD.eps M67FSCMD.png
+
+
+mv *.png ../LaTeX/IMGs/

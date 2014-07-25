@@ -1,0 +1,18 @@
+device postencap M67FSCMD.eps
+xtcolors
+lweight 3
+ptype 24 3
+
+expand 0.9
+window -2 1 1 1
+limits 0.01 2.4 21 9
+ticksize 0.1 0.5 1 2
+xlabel B-V
+ylabel V
+box 1 2
+
+expand 0.4
+data "CMD/NGC2682.TrimmedISO.txt"
+read {B 6 V 8}
+points (B-V) V
+

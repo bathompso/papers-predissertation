@@ -1,0 +1,182 @@
+\section{Binary Cluster Populations and Evolution}\label{sec:BinarySED}
+
+\subsection{Effects of Binary Stars}
+
+\subsubsection{Effect on Stellar Evolution}\label{BinStellarEvo}
+
+Binary systems are known to have effects on stellar evolution, allowing the creation of non-standard stars, such as \emph{blue stragglers}. When a star consumes all of its Hydrogen fuel in the core, it begins to expand and moves onto the sub-giant branch on a CMD. In many clusters, however, large stars are observed on the main sequence above the turnoff, meaning that they have continued burning hydrogen in their cores longer than expected. These stars are termed blue stragglers, as they linger on the hotter main sequence instead of following the cooler sub-giant branch.
+
+Many blue stragglers have been confirmed to be part of a cluster through RV measurements, so it is unlikely they are contamination from field stars. The leading theory of blue straggler formation hypothesizes that blue stragglers are main sequence stars that were at some point a member of a binary system with a larger star \citep{2011Natur.478..356G}. As the larger star evolves off of the main sequence and increases in size, the pre-blue straggler begins to siphon off mass from its companion. The influx of mass allows the pre-blue straggler to access more Hydrogen than it normally would, and continue burning on the main sequence for longer than conventional models predict.
+
+If this theory is correct, we should find a correlation between the percentage of binaries and frequency of blue stragglers. Using our large cluster set, we will test this theory of blue straggler evolution more rigorously than ever before. \textbf{[Question 3]}
+
+\subsubsection{Effect on Cluster Evolution}
+Open clusters are not infinitely-lived; they slowly ``evaporate'' away and disappear over a few Gyr on average. The destruction of open clusters is predominantly a result of two effects:\\
+
+\noindent \textbf{Cluster Heating:} Stars within the cluster can transfer energy to one another through gravitational interactions. When a small star passes by a large one, it may pick up energy from the interaction, which may accelerate the smaller star past the escape velocity of the cluster. These internal interactions will ``boil off'' many of the smaller members of the cluster, starting the cluster destruction process.\\
+
+\noindent \textbf{Tidal Friction:} The \emph{tidal radius} of an open cluster is the radius within which all the stars are gravitationally bound; stars outside of the tidal radius are no longer gravitationally bound and are lost to the cluster. When a cluster is far from all other large gravitational sources, the tidal radius of the cluster stays fairly constant, $r_{t0}$. However, when the cluster passes by a large mass, such as a spiral arm or giant molecular cloud, the tidal radius shrinks to $r_t$ as the outside mass pulls on the outer members of the cluster. Cluster stars that are now outside of $r_t$ move away from the cluster under the influence of the foreign mass.
+
+After the cluster passes the large mass, the tidal radius expands back to its original size, but some of the cluster stars have moved enough such that they are now outside of $r_{t0}$ and are therefore no longer bound to the cluster. Large clumps of mass are common within the galactic disk, and multiple of these ``collisions'' will remove many of the cluster members over a few Gyr.\\
+
+Binary systems within a cluster add to cluster heating by contributing not only their orbital energy during an interaction but also the internal energy of the system. To understand what effect this has on interactions, the orbital energy of the system is compared to the internal energy of the system itself. A theoretical cluster is assumed to have a mass of 1000 M$_\odot$, while the theoretical binary system orbits at a radius of 5 ly from the cluster center. The binary system has a primary star mass of 2 M$_\odot$ and an average separation of 20 AU.
+\begin{equation}
+E_{cluster} = \frac{GM}{R} = \frac{(6.67\times10^{-11})(1000(2\times10^{30}))}{5(9.46\times10^{15})} = 2.82\times10^6 \text{ J}
+\end{equation}
+\begin{equation}
+E_{internal} = \frac{GM}{R} = \frac{(6.67\times10^{-11})(2(2\times10^{30}))}{20(1.49\times10^{11})} = 8.95\times10^7 \text{ J}
+\end{equation}
+There is more than an order of magnitude more energy locked within the orbit of the binary system than in the rotation around the cluster center. The massive increase in interaction energy with binary systems will lead to quicker ``boiling off'' of clusters with a high percentage of binaries. We will accurately determine the percentage of binaries within a cluster and correlate it with cluster destruction timescales.
+
+\subsection{Current Binary Detection Techniques}\label{BinaryDetection}
+
+\subsubsection{Two-Band Photometry}\label{TwoBandPhot}
+Binary stars will be brighter than a single star with the same mass as the primary, due to additional flux from the secondary star. In addition, the star's color will be shifted by the smaller (and hence redder) star. When plotted on a CMD, main sequence binary stars will be offset above and to the right from the single star main sequence. Considering the special case of an equal-mass binary system, the binary system will have the same color as a component single star, but will be twice as bright. Using equation \eqref{eq:MagSystem}, we find the difference in magnitudes:
+
+\begin{equation}
+m_S - m_B = -2.5 \log_{10} \left( \frac{F_S}{F_B} \right) = -2.5 \log_{10} \left( \frac{F_S}{2 F_S} \right) = 0.753
+\end{equation}
+
+An equal-mass binary system will be located 0.753 magnitudes above the corresponding single star on a CMD. Binaries with a mass ratio less than one will be located at various locations between the single star main sequence and the equal mass binary sequence on the CMD. Two-band photometry studies attempt to measure the binary properties of a cluster using a single CMD by measuring the distance between a star and the single star main sequence.
+
+The distance a binary star is from the single star main sequence depends not only on the mass ratio of both stars, but also the primary mass. Figure \ref{fig:BinaryQCMD} shows the position of binary stars on a CMD for various primary masses and mass ratios. Binaries with a mass ratio of 0.5 (open squares) lie close to the single star main sequence for primary stars with mass $< 2 M_\odot$ and close to the equal mass binary sequence for primary masses of $> 3 M_\odot$. 
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.6\textwidth]{IMGs/BinaryCMD.jpg}
+\parbox{0.7\textwidth}{\caption[Position of binaries on CMD]{Figure reproduced from \citet{Hurley:1998wb}. Theoretical single star and equal mass binary main sequences for a star cluster covering a range of magnitudes. For each primary mass, points are plotted on the CMD for every binary mass fraction in steps of 0.1. Open squares are binaries with a mass ratio of 0.5. \label{fig:BinaryQCMD}}}
+\end{figure}
+This binary detection technique is very sensitive to errors. For low mass primaries, small color errors will blend together single stars and binaries with a mass ratio of 0.5 because they lie so close together on the CMD. On the high mass end, it becomes hard to differentiate between primary masses, as all binaries with mass ratios greater than 0.5 lie along the equal mass binary track. Figure \ref{fig:BinaryQCMD} shows binary positions for high primary masses in a grid of 1 $M_\odot$. Attempting to measure using a finer grid is impossible as many binaries will begin to overlap.
+
+Two-band photometry studies are most useful for quickly determining the binary fraction of a cluster. While it is unable to determine individual masses of binary systems, binaries with mass ratios greater than 0.5 can often be grouped together and measured (see \citet{2011arXiv1111.0552M}). We are interested in determining the individual mechanics of the binary systems in a cluster, and require a more robust approach.
+
+
+\subsubsection{Radial Velocity Studies}\label{PastRV}
+The most accurate way of detecting binaries is through the use of radial velocities (RVs) of spectroscopic binaries (described in \ref{SpecBinaryIntro}). The value of these studies is that individual star orbits can be determined for double-lined spectroscopic binaries and can be inferred from single-lined binaries. A knowledge of the orbits is important to understanding the mechanics of the binary system.
+
+RV studies of cluster binaries, while powerful due to the amount of information they give, are limited in several ways.\\
+
+\noindent \textbf{Limited Sample Size:} Since RVs are determined spectroscopically, there are only a small number of stars that can be measured at a single time. Photometry of a cluster can determine magnitudes for thousands of stars with a single image, while spectroscopy, at maximum, can measure spectra for a few hundred stars at once. In order to survey a cluster, a large amount of telescope time must be used to cover all stars.\\
+
+\noindent \textbf{Multiple Visits:} Stellar spectra must be obtained multiple times in order to determine whether a star is a binary or not. Fully characterizing the orbits of both stars requires many repeat observations, depending on the orbital period of the system. This multiplies the necessary telescope time for a quality RV study in order to detect binaries. \\
+
+\noindent \textbf{Limiting Magnitude:} In order to accurately determine a star's velocity, a certain level of signal-to-noise must be achieved. For a high-resolution spectrometer (R $\sim$ 20,000), the incoming flux is spread across all resolution elements. Comparing to a comparable length photometric exposure, we find the limiting magnitude difference:
+
+\begin{equation}
+m_{\text{phot}} - m_{\text{spec}} = -2.5 \log_{10} \left( \frac{1}{20000} \right) = 10.8
+\label{eq:SpecLimit}
+\end{equation}
+
+In the time it will take a spectroscopic measurement to complete on a 10th magnitude star, all stars down to 20th magnitude could be measured photometrically. \\
+
+\noindent \textbf{Inclination \& Orbital Period:} Mass determination using double-lined binaries is complicated by the inclination of the system. While RV studies can determine the orbital mechanics of the system, they cannot accurately determine masses. In addition, RV studies are limited by the resolution of their spectrometer; systems with doppler shifts less than the resolution of the spectrometer will not be registered as variable. Only binary systems with short enough orbital periods will produce large enough doppler shifts to be detected. \\
+
+Both of the current binary detection techniques are inadequate for understanding the mechanics of binary systems in a cluster. We present an alternate method that is able to determine binary parameters for individual systems within a reasonable amount of telescope time.
+
+
+\subsection{Binary SED Fitting}
+
+Using multi-filter photometry, we rebuild the spectral-energy distribution (SED) of a star and compare it to those from isochrones. Binary systems will differ from single stars due to excess flux in the red to infrared from the smaller companion. Using isochrone sets, a grid of binary and single stars are built for a specific metallicity, age, distance and reddening. Single star isochrone magnitudes are converted to fluxes using,
+
+\begin{equation}
+\hat{F} = 10^{m / -2.5}
+\end{equation}
+For a binary with primary star P and secondary star S, the total flux for a specific filter is simply a sum of both constituent stars:
+
+\begin{equation}
+\hat{F}_B = \hat{F}_P + \hat{F}_S
+\end{equation}
+Combining the two above equations and converting back to a magnitude for the binary star, we find:
+
+\begin{equation}
+m_B = -2.5 \log_{10} \left( 10^{m_P / -2.5} + 10^{m_S / -2.5} \right)
+\label{BinaryFluxConv}
+\end{equation}
+Magnitudes are computed for every possible combination of primary and secondary star mass in all filters. New isochrone files which contain magnitudes for all single and binary stars for a given set of cluster parameters is output and used by the fitting code. In the conversion to flux from magnitude there is a zero point correction that we are neglecting. This zero point cancels in equation \eqref{BinaryFluxConv}, so it makes no difference to the result and improves computational accuracy to neglect it.
+
+In order to get accurate results, a star must have at least 9 valid magnitudes. Stars with less than 9 valid magnitudes are skipped during the reduction and no information can be gained. Cluster stars with 9 or more magnitudes are then individually compared to these binary isochrone grids, and assigned a $\chi^2$ value using:
+
+\begin{equation}
+\chi^2 = \sum_{\text{filters}} \frac{1}{|m_{\text{observed}} - m_{\text{isochrone}}| + 0.01}
+\label{eq:BinChiSq}
+\end{equation}
+
+A softening parameter, 0.01, is used to avoid mathematical singularities. To remove magnitudes with large errors, any filters with a fit value of less than 10 is rejected. After the star has been compared to all grid points, the highest $\chi^2$ value is chosen as the best fit and those parameters (primary and secondary masses) are recorded. For a match to be considered, it has to have at least 9 ``good'' magnitude matches. If no fits have 9 good matches, but the star started with 9 or more valid magnitudes, then the star is classified as a non-member of the cluster.
+
+To account for the errors in the photometry, the grid searching process is Monte Carloed. At the beginning of each iteration, every filter magnitude is sampled from a gaussian error distribution. The best fits from each iteration are recorded, and the fitting program outputs the mean and standard deviation of the best fit results. For the preliminary results, 10 iterations were used, but it is possible to use any number of resamples.
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=0.8\textwidth]{IMGs/FluxCompare.png}
+\parbox{0.8\textwidth}{\caption{Comparison of star in M67 with model SEDs. \emph{(Top)} Observed fluxes (red) compared to best-fit binary model. \emph{(Bottom)} Observed fluxes (red) compared to two best-fit single star models.\label{fig:FluxCompare}}}
+\end{center}
+\end{figure}
+
+Figure \ref{fig:FluxCompare} shows the result of a binary fitting on a star from the cluster M67, using 11 of the 12 possible filters: $ugriJHK_S$[3.6][4.5][5.8][8.0]. In the bottom panel, the observed fluxes (red) are compared to the two best-fit single star models. One single star model is chosen to fit the visual data the best, while the other is chosen to fit the mid-IR tail; neither fit the data closely. The top panel shows an improved fit when matching to a binary model. This star was flagged by a previous WOCS RV study as a single, but our technique demonstrates it is fit better as a binary system. The reason for this is discussed in section \ref{sec:RealWorldSED}
+
+
+\subsection{Code Testing}
+
+Several tests were performed to measure the fitting routine's sensitivity to errors. Synthetic photometry from the isochrone files is first re-sampled using gaussian distributed errors, to simulate actual observational data, and then input into the fitter. For the first run, solar-metallicity, 4 Gyr isochrones are used. \\
+
+\subsubsection{Single Star Test}
+All of the single stars in the isochrone set were input into the isochrone fitter, to test error sensitivity in false positive binary detection. Photometric errors of 0.07, higher than most of the observational data compiled, were used in each filter.
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=0.35\textwidth]{IMGs/BinSingleSyn.png}
+\parbox{0.8\textwidth}{\caption[Single Star Test for Binary Fitter]{Results for the single star test. Black stars are confirmed singles, red are stars flagged as binaries by the fitting routine. Green line is original ridgeline stars are sampled from, blue is ridgeline of equal mass binaries.\label{fig:SingleSynTest}}}
+\end{center}
+\end{figure}
+Results of the single star test are in figure \ref{fig:SingleSynTest}. Black dots on the figure are stars that were confirmed as single in the fitter, while red stars are those flagged as a binary by the fitting routine. Two problem areas arise: one where the equal-mass binary sequence passes over the subgiant branch, and another where the binary subgiant branch approaches the lower RGB. This test indicates that results for stars near and above the turnoff cannot be trusted, while stars on the main sequence will have few (if any) false positive detections. \\
+
+\subsubsection{Mass Determination Test}
+A second test was used to determine the accuracy of mass determinations from the fitting routine. For this test, 2000 binary stars were randomly chosen from the entire isochrone grid, and sampled with errors of 0.04 in all bands. This 2000 star set was then run through the fitter and the output masses are compared to the originals. The results are summarized in figure \ref{fig:BinCompareSyn}.
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=0.8\textwidth]{IMGs/BinCompareSyn.png}
+\parbox{0.8\textwidth}{\caption[Mass Determination Test for Binary Fitter]{Results for the mass determination test. \emph{(Top)} Percentage error in secondary star mass determination vs primary star mass. \emph{(Bottom)} Percentage erro in primary star mass determination vs primary star mass. \label{fig:BinCompareSyn}}}
+\end{center}
+\end{figure}
+Similar to the single star test, photometric errors begin to complicate fits above the turn-off (around 1.0 $M_\odot$). For lower mass stars, primary mass determination is accurate to around 5\%, while secondary mass determination is good to roughly 10\%.
+
+\subsubsection{Real World Test}\label{sec:RealWorldSED}
+For the cluster M67, we compare the results from the binary fitting to published RV results in order to check the validity of our fits. The results of this run are shown in figure \ref{fig:BinM67Test}. Noting the problem with binary determination at or above the turnoff, we restrict our results to stars below $g \sim 14$. Stars confirmed as singles or binaries using both methods are colored dark and bright green, respectively. 
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[width=0.7\textwidth]{IMGs/BinM67Test.png}
+\parbox{0.8\textwidth}{\caption[Binary Fitter Results vs WOCS RVs]{Results of binary fitting on the cluster M67. \emph{Left:} Black = single; blue = binary; grey = too few magnitude values for star. \emph{Right:} Comparison with WOCS RV study. Dark green = both confirmed single; green = both confirmed binary; blue = WOCS single, best-fit binary; red = WOCS binary, best-fit single.\label{fig:BinM67Test}}}
+\end{center}
+\end{figure}
+
+Stars colored blue in figure \ref{fig:BinM67Test} are stars that are measured as singles in the RV study, but our routine marks as binaries. These stars may be pole-on binaries, binary systems with an inclination of 0$^\circ$, which will show no RV variability but will appear as binaries photometrically. Alternately, systems with long orbital periods may not produce appreciable RV shifts but will show excess flux. The individual fitting of a blue dot star is shown in figure \ref{fig:FluxCompare}.
+
+Stars marked red in figure \ref{fig:BinM67Test} are RV-measured binaries, but are fit best by single stars in our method. These systems may be ones with very small secondaries, where the flux addition may not be appreciable. RV studies are much more sensitive to these types of systems, and will detect them whereas we will not.
+
+\subsection{Future Work}
+Future work on this project will focus on the following areas:
+
+\begin{enumerate}
+\item \textbf{More Testing:} While the first tests of the binary fitter showed promise, many more testing scenarios are required. Each of the tests used a single age and metallicity, and re-running all the above tests using different values for age and metallicity will further illuminate the fitter's abilities. The young cluster M35 also has a published WOCS RV study and will make a good second test to real-world data.
+
+The exact parameters of a cluster are not always known; a future test will measure the fitter's sensitivity to the four isochrone parameters.
+
+\item \textbf{Finer Grids:} To improve the power of the binary fitting routine, fine mass grids are required. Many isochrone sets include a rough grid of masses along the main sequence. This is visible in the left panel of figure \ref{fig:BinM67Test}. There are very few detected single or binary stars between $g \sim 16.5$ and 19 due to the very coarse grid of stellar masses available over this range. We will interpolate the isochrones to create the fine mass grid the fitting routine requires.
+
+\item \textbf{Better Isochrones:} The binary fitting routine assumes that the isochrone system being used correctly matches the observational data. The Padova and Dartmouth systems have shown problems in the lower main sequence, leading to inaccurate parameter determination for low-mass systems. Analyzing more isochrone systems, using the technique in \ref{sec:Isochrones}, will lead to better-fitting isochrone models to use in the binary fitting routine.
+
+\end{enumerate}
+
+
+
+
+
+
+
+
+
+
+
+
